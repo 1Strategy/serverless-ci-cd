@@ -1,0 +1,24 @@
+{
+  "name": "serverless-github-codepipeline",
+  "version": "1.0.0",
+  "description": "Demo serverless project using CodePipeline for CI/CD",
+  "main": "handler.js",
+  "scripts": {
+    "test": "sls invoke test -s dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1Strategy/serverless-github-codepipeline.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/1Strategy/serverless-github-codepipeline/issues"
+  },
+  "homepage": "https://github.com/1Strategy/serverless-github-codepipeline#readme",
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.26",
+    "serverless-jest-plugin": "^0.1.6",
+    "serverless-offline": "^3.16.0"
+  }
+}
