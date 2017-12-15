@@ -4,7 +4,8 @@
   "description": "Demo serverless project using CodePipeline for CI/CD",
   "main": "handler.js",
   "scripts": {
-    "test": "sls invoke test -s dev"
+    "test": "sls invoke test -s dev",
+    "lint": "eslint */*.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,17 @@
   },
   "homepage": "https://github.com/1Strategy/serverless-github-codepipeline#readme",
   "devDependencies": {
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
     "serverless-dynamodb-local": "^0.2.26",
     "serverless-jest-plugin": "^0.1.6",
     "serverless-offline": "^3.16.0"
+  },
+  "dependencies": {
+    "serverless-dynamodb-client": "0.0.2"
   }
 }

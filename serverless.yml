@@ -1,32 +1,30 @@
 service: serverless-github-codepipeline
 
-define provider, runtime, and
 provider:
   name: aws
   runtime: nodejs6.10 # AWS lambda supports v.4.3.2 and v.6.10.3
   memorySize: 512 # overwrite default memory of 1024; makes lambda free tier last longer.
   versionFunctions: false # don't create a new function version with each deploy
 
-# overwrite defaults
-#  stage: dev
-  region: us-west-2 # override default region us-east-1
+# Overwrite defaults
+  region: us-east-1 # override default region us-east-1
 
-# service-wide environment variables
+# Service-wide environment variables
   environment:
-    ENV: ${opt:env}
+    STAGE: ${opt:stage}
 
 # Add statements to the Lambda function's IAM Role
- iamRoleStatements:
-  - Effect: "Allow"
-    Action:
-      dynamodb:DescribeTable
-      dynamodb:Scan
-      dynamodb:Query
-      dynamodb:GetItem
-      dynamodb:PutItem
-      dynamodb:UpdateItem
-      dynamodb:DeleteItem
-    Resource: 'arn:aws:dynamodb:us-west-2:*:*'
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        dynamodb:DescribeTable
+        dynamodb:Scan
+        dynamodb:Query
+        dynamodb:GetItem
+        dynamodb:PutItem
+        dynamodb:UpdateItem
+        dynamodb:DeleteItem
+      Resource: 'arn:aws:dynamodb:us-west-2:*:*'
 
   #  - Effect: "Allow"
   #    Action:
@@ -53,8 +51,13 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  listTodos:
+    handler: todos/handler.list
+    events:
+      - http:
+          path: todos
+          method: get
+
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -89,14 +92,38 @@ functions:
 #    environment:
 #      variable2: value2
 
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+# Define CloudFormation resource templates here
+resources:
+  Resources:
+    TodosDB:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: 'Todos-${opt:stage}'
+        # here we define the table
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+          -
+            AttributeName: item
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: '1'
+          WriteCapacityUnits: '1'
+
+
+custom:
+  dynamodb:
+    start:
+      port: 8000
+      # uncomment for already-running local dynamodb
+      # noStart: true
+
+plugins:
+  - serverless-dynamodb-local # use this with severless-offline to create local dev environment
+  - serverless-offline
+  - serverless-jest-plugin
