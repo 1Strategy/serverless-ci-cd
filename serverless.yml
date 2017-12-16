@@ -7,7 +7,7 @@ provider:
   versionFunctions: false # don't create a new function version with each deploy
 
 # Overwrite defaults
-  region: us-east-1 # override default region us-east-1
+  region: us-west-2 # override default region us-east-1
 
 # Service-wide environment variables
   environment:
@@ -24,7 +24,8 @@ provider:
         dynamodb:PutItem
         dynamodb:UpdateItem
         dynamodb:DeleteItem
-      Resource: 'arn:aws:dynamodb:us-west-2:*:*'
+      Resource:
+        'arn:aws:dynamodb:us-west-2:*:*'
 
   #  - Effect: "Allow"
   #    Action:
@@ -51,13 +52,19 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
+# TODO: implement Express.js
   listTodos:
     handler: todos/handler.list
     events:
       - http:
           path: todos
           method: get
-
+  postTodos:
+    handler: todos/handler.post
+    events:
+      - http:
+          path: todos
+          method: post
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -99,13 +106,10 @@ resources:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         TableName: 'Todos-${opt:stage}'
-        # here we define the table
+        # here we define the primary key of the table.
         AttributeDefinitions:
           -
             AttributeName: id
-            AttributeType: S
-          -
-            AttributeName: item
             AttributeType: S
         KeySchema:
           -
@@ -121,7 +125,8 @@ custom:
     start:
       port: 8000
       # uncomment for already-running local dynamodb
-      # noStart: true
+      # migrate: true
+      noStart: true
 
 plugins:
   - serverless-dynamodb-local # use this with severless-offline to create local dev environment
