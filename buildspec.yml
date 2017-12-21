@@ -1,0 +1,25 @@
+---
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm install --silent --progress=false -g npm
+      - npm install --silent --progress=false -g serverless
+      - npm install --silent --progress=false
+      - npm --version
+  build:
+    commands:
+      # linting and unit tests
+      - npm run-script lint
+      - npm test
+      # deploy integration testing environment
+      - serverless deploy --stage test | tee deploy.out
+      - cat deploy.out
+      - npm run-script integration
+      # if successful, deploy to staging environment
+      # - serverless deploy --stage staging -v
+  post_build:
+    commands:
+      - serverless remove --stage test -v
+...
