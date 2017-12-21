@@ -1,4 +1,4 @@
-const Todos = require('../todos/todos.js');
+const Todos = require('../../todos/todos.js');
 
 describe('postTodos', () => {
 // mock the db

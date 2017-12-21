@@ -4,8 +4,9 @@
   "description": "Demo serverless project using CodePipeline for CI/CD",
   "main": "handler.js",
   "scripts": {
-    "test": "jest",
-    "lint": "eslint */*.js"
+    "test": "jest __tests__/unit/*",
+    "lint": "eslint */*.js",
+    "integration": "jest __tests__/integration/*"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,8 @@
     "eslint-plugin-react": "^7.5.1",
     "jest": "^22.0.3",
     "serverless-dynamodb-local": "^0.2.26",
-    "serverless-offline": "^3.16.0"
+    "serverless-offline": "^3.16.0",
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "serverless-dynamodb-client": "0.0.2",
