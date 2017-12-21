@@ -52,7 +52,7 @@ Accepts an object in this format:
 Returns a status of 200. The created object is not returned;  you can see it with a GET /todos.
 
 ## Testing
-To run tests, use
+To run unit tests, use
 ```
 npm test
 ```
@@ -60,6 +60,11 @@ npm test
 To lint, use
 ```
 npm run-script lint
+```
+
+To run integration tests, use
+```
+npm run-script integration
 ```
 
 ## Making Changes
