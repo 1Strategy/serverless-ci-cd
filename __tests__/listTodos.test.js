@@ -5,7 +5,7 @@ describe('listTodos', () => {
   const dbMock = {};
   dbMock.scan = jest
     .fn((params, callback) => {
-      callback(null, { statusCode: 201, body: JSON.stringify([]) });
+      callback(null, { Items: [] });
     })
     .mockName('db.scan');
 
@@ -33,9 +33,8 @@ describe('listTodos', () => {
 
   it('Receives a response with the correct body', () => {
     todos.list((err, res) => {
-      console.log('response--------');
-      console.log(res);
-      expect(res.body).toBe('[]');
+      const parsedBody = JSON.parse(res.body);
+      expect(parsedBody).toEqual([]);
     });
   });
 });

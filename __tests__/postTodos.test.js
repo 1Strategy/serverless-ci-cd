@@ -5,7 +5,7 @@ describe('postTodos', () => {
   const dbMock = {};
   dbMock.put = jest
     .fn((params, callback) => {
-      callback(null, { statusCode: 201, body: JSON.stringify([]) });
+      callback(null, {});
     })
     .mockName('db.put');
 
@@ -36,6 +36,13 @@ describe('postTodos', () => {
   it('Receives a response with status 200', () => {
     todos.post(postObj, (err, res) => {
       expect(res.statusCode).toBe(200);
+    });
+  });
+
+  it('Receives an empty object in the body', () => {
+    todos.post(postObj, (err, res) => {
+      const parsedBody = JSON.parse(res.body);
+      expect(parsedBody).toEqual({});
     });
   });
 });
