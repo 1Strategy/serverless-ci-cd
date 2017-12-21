@@ -61,3 +61,11 @@ To lint, use
 ```
 npm run-script lint
 ```
+
+## Making Changes
+If you change the `serverless.yml` file, you'll need to restart it:
+- Stop the offline app; `ctrl-c` in the terminal where it's running is all you need. It's fine to leave the db running.
+- Uncomment the line in the `serverless.yml` file that says `noStart: true`. This will prevent serverless offline from trying to start a new database.
+- Run `sls offline start --stage dev` again.
+
+Changes to any other file in the app (e.g. a handler) will be reflected immediately, and don't require a restart.
