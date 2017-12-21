@@ -7,6 +7,7 @@ phases:
       - npm install --silent --progress=false -g npm
       - npm install --silent --progress=false -g serverless
       - npm install --silent --progress=false
+      - npm install --silent --progress=false -g request
       - npm --version
   build:
     commands:
