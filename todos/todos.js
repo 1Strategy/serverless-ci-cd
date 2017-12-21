@@ -54,7 +54,7 @@ class Todos {
 
         const response = {
           statusCode: 200,
-          body: JSON.stringify(todo)
+          body: JSON.stringify(todo) // TODO: this is undefined; return actual object in response
         };
 
         callback(null, response);

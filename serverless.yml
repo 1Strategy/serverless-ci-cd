@@ -25,22 +25,8 @@ provider:
         dynamodb:UpdateItem
         dynamodb:DeleteItem
       Resource:
+        # TODO: refine down to just the todo table
         'arn:aws:dynamodb:us-west-2:*:*'
-
-  #  - Effect: "Allow"
-  #    Action:
-  #      - "s3:ListBucket"
-  #    Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-  #  - Effect: "Allow"
-  #    Action:
-  #      - "s3:PutObject"
-  #    Resource:
-  #      Fn::Join:
-  #        - ""
-  #        - - "arn:aws:s3:::"
-  #          - "Ref" : "ServerlessDeploymentBucket"
-  #          - "/*"
-
 
 # you can add packaging information here
 #package:
@@ -125,10 +111,8 @@ custom:
     start:
       port: 8000
       # uncomment for already-running local dynamodb
-      # migrate: true
-      noStart: true
+      # noStart: true
 
 plugins:
   - serverless-dynamodb-local # use this with severless-offline to create local dev environment
   - serverless-offline
-  - serverless-jest-plugin
