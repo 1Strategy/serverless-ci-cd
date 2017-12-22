@@ -4,12 +4,13 @@ version: 0.2
 phases:
   install:
     commands:
+      - rm package-lock.json
       - npm install --silent --progress=false -g npm
       - npm install --silent --progress=false -g serverless
       - npm install
       - ls -la node_modules/ | grep request
-      - npm install request
-      - ls -la node_modules/ | grep request
+      # - npm install request
+      # - ls -la node_modules/ | grep request
       - npm --version
   build:
     commands:
