@@ -21,7 +21,7 @@ phases:
       # integration tests
       - npm run-script integration
       # if successful, deploy to staging environment
-      # - serverless deploy --stage staging -v
+      - serverless deploy --stage staging -v
   post_build:
     commands:
       # tear down integration testing environment
@@ -31,7 +31,6 @@ artifacts:
   files:
     # export artifacts needed for prod build to an S3 bucket
     - serverless.yml
-    - package.json
     - publish.zip
     - promotion.sh
   discard-paths: yes
