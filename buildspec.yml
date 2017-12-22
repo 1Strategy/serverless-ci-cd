@@ -6,6 +6,7 @@ phases:
     commands:
       # remove package-lock before updating npm, otherwise not all dependencies will install
       - rm package-lock.json
+      # update npm to 5.6.0 due to package-lock bug: https://github.com/npm/npm/issues/18135
       - npm install --silent --progress=false -g npm
       - npm install --silent --progress=false -g serverless
       - npm install --silent --progress-false
@@ -16,13 +17,15 @@ phases:
       - npm run-script lint
       - npm test
       # deploy integration testing environment
-      - serverless deploy --stage test | tee deploy.out
-      - cat deploy.out
+      - serverless deploy --stage test
+      - cat .build/stack.json
+      # integration tests
       - npm run-script integration
       # if successful, deploy to staging environment
       # - serverless deploy --stage staging -v
   post_build:
     commands:
+      # tear down integration testing environment
       - serverless remove --stage test -v
       - echo 'foo'
 ...
