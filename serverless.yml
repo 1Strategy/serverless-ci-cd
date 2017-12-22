@@ -26,7 +26,7 @@ provider:
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:us-west-2:*:*"
 
-# you can add packaging information here
+# Packaging info goes here
 #package:
 #  include:
 #    - include-me.js
