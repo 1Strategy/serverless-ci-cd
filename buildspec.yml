@@ -24,4 +24,5 @@ phases:
   post_build:
     commands:
       - serverless remove --stage test -v
+      - echo 'foo'
 ...
