@@ -36,6 +36,6 @@ artifacts:
   files:
     # export artifacts needed for prod build to an S3 bucket
     - serverless.yml
-    - artifacts/publish.zip
+    - artifacts/
     - promotion.sh
   discard-paths: yes
