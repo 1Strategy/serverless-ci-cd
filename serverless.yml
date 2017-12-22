@@ -110,7 +110,10 @@ custom:
       port: 8000
       # uncomment for already-running local dynamodb
       # noStart: true
+  output:
+    file: .build/stack.json
 
 plugins:
-  - serverless-dynamodb-local # use this with severless-offline to create local dev environment
+  - serverless-dynamodb-local # use this with serverless-offline to create local dev environment
   - serverless-offline
+  - serverless-stack-output # store stack output in a file
