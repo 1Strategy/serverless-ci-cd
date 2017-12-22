@@ -1,4 +1,3 @@
----
 version: 0.2
 
 phases:
@@ -8,6 +7,7 @@ phases:
       - rm package-lock.json
       # update npm to 5.6.0 due to package-lock bug: https://github.com/npm/npm/issues/18135
       - npm install --silent --progress=false -g npm
+      # install dependencies
       - npm install --silent --progress=false -g serverless
       - npm install --silent --progress-false
       - npm --version
@@ -18,7 +18,6 @@ phases:
       - npm test
       # deploy integration testing environment
       - serverless deploy --stage test
-      - cat .build/stack.json
       # integration tests
       - npm run-script integration
       # if successful, deploy to staging environment
@@ -27,5 +26,12 @@ phases:
     commands:
       # tear down integration testing environment
       - serverless remove --stage test -v
-      - echo 'foo'
-...
+
+  artifacts:
+    files:
+      # export artifacts needed for prod build to an S3 bucket
+      - serverless.yml
+      - package.json
+      - publish.zip
+      - promotion.sh
+    discard-paths: yes
