@@ -27,11 +27,11 @@ phases:
       # tear down integration testing environment
       - serverless remove --stage test -v
 
-  artifacts:
-    files:
-      # export artifacts needed for prod build to an S3 bucket
-      - serverless.yml
-      - package.json
-      - publish.zip
-      - promotion.sh
-    discard-paths: yes
+artifacts:
+  files:
+    # export artifacts needed for prod build to an S3 bucket
+    - serverless.yml
+    - package.json
+    - publish.zip
+    - promotion.sh
+  discard-paths: yes
