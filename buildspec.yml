@@ -24,6 +24,7 @@ phases:
       - ls -la
       - mkdir artifacts
       - serverless package --package artifacts --stage staging -v
+      - ls -la artifacts/
       # if successful, deploy to staging environment
       - serverless deploy --stage staging -v
   post_build:
