@@ -18,8 +18,12 @@ phases:
       - npm test
       # deploy integration testing environment
       - serverless deploy --stage test
+      - echo 'contents of dir ========================'
       # integration tests
       - npm run-script integration
+      - ls -la
+      - mkdir artifacts
+      - serverless package --package artifacts
       # if successful, deploy to staging environment
       - serverless deploy --stage staging -v
   post_build:
@@ -31,6 +35,6 @@ artifacts:
   files:
     # export artifacts needed for prod build to an S3 bucket
     - serverless.yml
-    - publish.zip
+    - artifacts/publish.zip
     - promotion.sh
   discard-paths: yes
