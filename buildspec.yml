@@ -23,7 +23,7 @@ phases:
       - npm run-script integration
       - ls -la
       - mkdir artifacts
-      - serverless package --package artifacts
+      - serverless package --package artifacts --stage staging -v
       # if successful, deploy to staging environment
       - serverless deploy --stage staging -v
   post_build:
