@@ -13,6 +13,7 @@ describe('/todos routes', () => {
       .send(postObj)
       .expect(200)
       .then((res) => {
+        expect(res).toBeDefined();
         expect(res.body).toEqual({});
       });
   });
@@ -22,6 +23,7 @@ describe('/todos routes', () => {
       .get('/todos')
       .expect(200)
       .then((res) => {
+        expect(res).toBeDefined();
         expect(Array.isArray(res.body)).toBe(true);
         expect(res.body[0]).toHaveProperty('title', 'Feed the cat');
         expect(res.body[0]).toHaveProperty('completed', false);
