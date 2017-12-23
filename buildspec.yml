@@ -42,4 +42,4 @@ artifacts:
     - artifacts/**/*
     - promotion.sh
     - package.json
-  discard-paths: yes
+  # discard-paths: yes
