@@ -1,7 +1,7 @@
 #! /bin/bash
 
 ls -la
-ls -la ./artifacts
+ls -la artifacts
 
 echo "Installing serverless"
 echo "====================="
@@ -10,4 +10,4 @@ npm install # we shouldn't need this, as serverless-dynamodb-local is a dev depe
 
 echo "Deploying app"
 echo "============="
-serverless deploy --stage $env --package ./artifacts -v
+serverless deploy --stage $env --package artifacts -v
