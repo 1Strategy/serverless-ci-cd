@@ -1,6 +1,7 @@
 #! /bin/bash
 
 ls -la
+ls -la ./artifacts
 
 echo "Installing serverless"
 echo "====================="
