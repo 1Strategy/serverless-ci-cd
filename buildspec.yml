@@ -30,6 +30,10 @@ phases:
   post_build:
     commands:
       # tear down integration testing environment
+      - ls -la
+      - ls -la artifacts
+      - echo $CODEBUILD_SRC_DIR
+      - pwd
       - serverless remove --stage test -v
 
 artifacts:
@@ -38,4 +42,4 @@ artifacts:
     - serverless.yml
     - artifacts/**/*
     - promotion.sh
-  discard-paths: yes
+  # discard-paths: yes
