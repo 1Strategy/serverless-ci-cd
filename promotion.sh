@@ -1,10 +1,5 @@
 #! /bin/bash
 
-ls -la
-ls -la
-pwd
-echo $CODEBUILD_SRC_DIR
-
 echo "Installing serverless"
 echo "====================="
 npm install -g serverless
