@@ -12,4 +12,4 @@ npm install # we shouldn't need this, as serverless-dynamodb-local is a dev depe
 
 echo "Deploying app"
 echo "============="
-serverless deploy --stage $env -v
+serverless deploy --stage $env $CODEBUILD_SRC_DIR/artifacts -v
