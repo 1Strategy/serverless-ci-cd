@@ -54,7 +54,6 @@ resources:
   Resources:
     TodosDB:
       Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Retain
       Properties:
         TableName: 'Todos-${opt:stage}'
         # here we define the primary key of the table.
@@ -75,7 +74,7 @@ custom:
     start:
       port: 8000
       # uncomment for already-running local dynamodb
-      # noStart: true
+      noStart: true
   output:
     file: .build/stack.json
 
