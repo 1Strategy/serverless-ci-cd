@@ -74,7 +74,7 @@ custom:
     start:
       port: 8000
       # uncomment for already-running local dynamodb
-      noStart: true
+      # noStart: true
   output:
     file: .build/stack.json
 
