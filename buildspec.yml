@@ -18,21 +18,16 @@ phases:
       - npm test
       # deploy integration testing environment
       - serverless deploy --stage test
-      - echo 'contents of dir ========================'
       # integration tests
       - npm run-script integration
-      - mkdir artifacts
       # if successful, deploy to staging environment
       - serverless deploy --stage staging -v
       # package a version of this code to go to prod eventually
+      - mkdir artifacts
       - serverless package --package artifacts --stage prod -v
   post_build:
     commands:
       # tear down integration testing environment
-      - ls -la
-      - ls -la artifacts
-      - echo $CODEBUILD_SRC_DIR
-      - pwd
       - serverless remove --stage test -v
 
 artifacts:
