@@ -16,24 +16,24 @@ phases:
       # linting and unit tests
       - npm run-script lint
       - npm test
-      # deploy integration testing environment
-      - serverless deploy --stage test
-      # integration tests
-      - npm run-script integration
-      # if successful, deploy to staging environment
-      - serverless deploy --stage staging -v
-      # package a version of this code to go to prod eventually
-      - mkdir artifacts
-      - serverless package --package artifacts --stage prod -v
-  post_build:
-    commands:
-      # tear down integration testing environment
-      - serverless remove --stage test -v
+#       # deploy integration testing environment
+#       - serverless deploy --stage test
+#       # integration tests
+#       - npm run-script integration
+#       # if successful, deploy to staging environment
+#       - serverless deploy --stage staging -v
+#       # package a version of this code to go to prod eventually
+#       - mkdir artifacts
+#       - serverless package --package artifacts --stage prod -v
+#   post_build:
+#     commands:
+#       # tear down integration testing environment
+#       - serverless remove --stage test -v
 
-artifacts:
-  files:
-    # export artifacts needed for prod build to an S3 bucket
-    - serverless.yml
-    - artifacts/**/*
-    - promotion.sh
-    - package.json
+# artifacts:
+#   files:
+#     # export artifacts needed for prod build to an S3 bucket
+#     - serverless.yml
+#     - artifacts/**/*
+#     - promotion.sh
+#     - package.json
