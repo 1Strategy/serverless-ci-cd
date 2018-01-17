@@ -39,5 +39,5 @@ artifacts:
     # export artifacts needed for staging and prod deployoments to an S3 bucket
     # - serverless.yml
     - artifacts/**/*
-    - promotion.sh
+    - deploy.sh
     # - package.json
