@@ -29,6 +29,7 @@ phases:
       # prod
       - mkdir artifacts/prod
       - serverless package --package artifacts/prod --stage prod -v
+      - echo 'foo'
   post_build:
     commands:
       # tear down integration testing environment
