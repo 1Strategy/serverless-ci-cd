@@ -37,7 +37,7 @@ phases:
 
 artifacts:
   files:
-    # export artifacts needed for staging and prod deployoments to an S3 bucket
+    # export artifacts needed for staging and prod deployments to an S3 bucket
     # - serverless.yml
     - artifacts/**/*
     - deploy.sh
