@@ -1,7 +1,7 @@
 {
-  "name": "serverless-github-codepipeline",
+  "name": "serverless-ci-cd",
   "version": "1.0.0",
-  "description": "Demo serverless project using CodePipeline for CI/CD",
+  "description": "Demo Serverless project using CodeBuild and CodePipeline for CI/CD",
   "main": "handler.js",
   "scripts": {
     "test": "jest __tests__/unit/*",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1Strategy/serverless-github-codepipeline.git"
+    "url": "git+https://github.com/1Strategy/serverless-ci-cd.git"
   },
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/1Strategy/serverless-github-codepipeline/issues"
+    "url": "https://github.com/1Strategy/serverless-ci-cd/issues"
   },
-  "homepage": "https://github.com/1Strategy/serverless-github-codepipeline#readme",
+  "homepage": "https://github.com/1Strategy/serverless-ci-cd#readme",
   "devDependencies": {
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",

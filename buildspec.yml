@@ -8,7 +8,7 @@ phases:
       # update npm to 5.6.0 due to package-lock bug: https://github.com/npm/npm/issues/18135
       - npm install --silent --progress=false -g npm
       # install dependencies
-      # - npm install --silent --progress=false -g serverless
+      - npm install --silent --progress=false -g serverless
       - npm install --silent --progress-false
       - npm --version
   build:
@@ -16,24 +16,28 @@ phases:
       # linting and unit tests
       - npm run-script lint
       - npm test
-#       # deploy integration testing environment
-#       - serverless deploy --stage test
-#       # integration tests
-#       - npm run-script integration
-#       # if successful, deploy to staging environment
-#       - serverless deploy --stage staging -v
-#       # package a version of this code to go to prod eventually
-#       - mkdir artifacts
-#       - serverless package --package artifacts --stage prod -v
-#   post_build:
-#     commands:
-#       # tear down integration testing environment
-#       - serverless remove --stage test -v
+      # deploy integration testing environment
+      - serverless deploy --stage test
+      # integration tests
+      - npm run-script integration
+      # if successful, create packages for staging and prod
+      # - serverless deploy --stage staging -v
+      - mkdir artifacts
+      # staging
+      - mkdir artifacts/staging
+      - serverless package --package artifacts/staging --stage staging -v
+      # prod
+      - mkdir artifacts/prod
+      - serverless package --package artifacts/prod --stage prod -v
+  post_build:
+    commands:
+      # tear down integration testing environment
+      - serverless remove --stage test -v
 
-# artifacts:
-#   files:
-#     # export artifacts needed for prod build to an S3 bucket
-#     - serverless.yml
-#     - artifacts/**/*
-#     - promotion.sh
-#     - package.json
+artifacts:
+  files:
+    # export artifacts needed for staging and prod deployoments to an S3 bucket
+    # - serverless.yml
+    - artifacts/**/*
+    - promotion.sh
+    # - package.json

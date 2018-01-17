@@ -26,15 +26,7 @@ provider:
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:us-west-2:*:*"
 
-# Packaging info goes here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
-
+# Define our lambda functions and the events they respond to
 functions:
   listTodos:
     handler: todos/handler.list
@@ -74,9 +66,9 @@ custom:
     start:
       port: 8000
       # uncomment for already-running local dynamodb
-      # noStart: true
+      noStart: true
   output:
-    file: .build/stack.json
+    file: .build/stack.json # where stack output should be stored by the serverless-stack-output plugin
 
 plugins:
   - serverless-dynamodb-local # use this with serverless-offline to create local dev environment

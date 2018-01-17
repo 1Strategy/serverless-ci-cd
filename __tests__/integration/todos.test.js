@@ -1,6 +1,6 @@
 const stackOutput = require('../../.build/stack.json');
 
-const url = stackOutput.ServiceEndpoint || 'http://localhost:3000';
+const url = stackOutput.ServiceEndpoint;
 const request = require('supertest')(url);
 
 describe('/todos routes', () => {
