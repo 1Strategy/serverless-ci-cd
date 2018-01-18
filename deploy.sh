@@ -10,4 +10,10 @@ echo "============="
 
 ls -la $CODEBUILD_SRC_DIR/artifacts/$env
 
-serverless deploy --stage $env --package $CODEBUILD_SRC_DIR/artifacts/$env -v
+# serverless deploy --stage $env --package $CODEBUILD_SRC_DIR/artifacts/$env -v
+
+cd artifacts/$env
+
+ls -la
+
+serverless deploy --stage $env --package . -v
