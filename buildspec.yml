@@ -17,7 +17,7 @@ phases:
       - npm run-script lint
       - npm test
       # deploy integration testing environment
-      - serverless deploy --stage test
+      - serverless deploy --stage test -v
       # integration tests
       - npm run-script integration
       # if successful, create packages for staging and prod
