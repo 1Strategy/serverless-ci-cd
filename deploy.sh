@@ -7,4 +7,7 @@ npm install serverless-dynamodb-local serverless-offline # we shouldn't need thi
 
 echo "Deploying app"
 echo "============="
-serverless deploy --stage $env --package $CODEBUILD_SRC_DIR/artifacts -v
+
+ls -la $CODEBUILD_SRC_DIR/artifacts/$env
+
+serverless deploy --stage $env --package $CODEBUILD_SRC_DIR/artifacts/$env -v
