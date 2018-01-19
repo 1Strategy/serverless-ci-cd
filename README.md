@@ -1,25 +1,29 @@
-# Serverless demo: Serverless, GitHub, and Code Pipeline
+# Serverless CI/CD Tutorial
+## Building, testing, and deploying Serverless apps using CodeBuild and CodePipeline
 
-## Install global npm modules
+This repo is the demo code for a [three-part tutorial](http://www.1strategy.com/blog/) on managing unit testing, integration testing, and deployment of apps built using the Serverless framework.
+
+To play with this code locally, clone this repo and do the following:
+
+### 1. Install global npm modules
 ```
 npm install -g serverless eslint jest
 ```
 
-## Install local npm modules
+### 2. Install local npm modules
 Navigate to the app directory, and run
 ```
 npm install
 ```
-
-## Bring up the DB
+### 3. Bring up the DB
 ```
 sls dynamodb install --stage dev
 sls dynamodb start --stage dev
 sls dynamodb migrate --stage dev
 ```
-Check your shell at [http://localhost:8000/shell/](http://localhost:8000/shell/) to see the db and view the created table.
+This series of commands installs a local DynamoDB, starts it, and creates any tables specified in the `serverless.yml`. Check your shell at [http://localhost:8000/shell/](http://localhost:8000/shell/) to interact with the db and view the created table.
 
-## Start the offline app
+### 4. Start the offline app
 ```
 sls offline start --stage dev
 ```
@@ -28,7 +32,7 @@ The app is now available at `http://localhost:3000`.
 
 The app has two endpoints:
 
-### GET /todos
+#### GET /todos
 Returns a list of todos:
 ```
 [
@@ -41,7 +45,7 @@ Returns a list of todos:
 ]
 ```
 
-### POST /todos
+#### POST /todos
 Accepts an object in this format:
 ```
 {
@@ -51,7 +55,7 @@ Accepts an object in this format:
 ```
 Returns a status of 200. The created object is not returned;  you can see it with a GET /todos.
 
-## Testing
+### 5. Run Tests
 To run unit tests, use
 ```
 npm test
@@ -67,8 +71,8 @@ To run integration tests, use
 npm run-script integration
 ```
 
-## Making Changes
-If you change the `serverless.yml` file, you'll need to restart it:
+### 6. Make Changes
+If you change the `serverless.yml` file, you'll need to restart your local app:
 - Stop the offline app; `ctrl-c` in the terminal where it's running is all you need. It's fine to leave the db running.
 - Uncomment the line in the `serverless.yml` file that says `noStart: true`. This will prevent serverless offline from trying to start a new database.
 - Run `sls offline start --stage dev` again.
