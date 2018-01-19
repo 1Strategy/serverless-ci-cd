@@ -1,7 +1,7 @@
 {
   "name": "serverless-ci-cd",
   "version": "1.0.0",
-  "description": "Demo Serverless project using CodeBuild and CodePipeline for CI/CD",
+  "description": "Demo Serverless project using CodeBuild and CodePipeline for CI/CD. Tutorial available at http://www.1strategy.com/blog/.",
   "main": "handler.js",
   "scripts": {
     "test": "jest __tests__/unit/*",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/1Strategy/serverless-ci-cd.git"
   },
-  "author": "",
+  "author": "1Strategy",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/1Strategy/serverless-ci-cd/issues"
