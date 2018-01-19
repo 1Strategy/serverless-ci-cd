@@ -2,11 +2,11 @@ service: serverless-ci-cd
 
 provider:
   name: aws
-  runtime: nodejs6.10 # AWS lambda supports v.4.3.2 and v.6.10.3
-  memorySize: 512 # overwrite default memory of 1024; makes lambda free tier last longer.
-  versionFunctions: false # don't create a new function version with each deploy
+  runtime: nodejs6.10 # AWS Lambda supports v.4.3.2 and v.6.10.3
 
 # Overwrite defaults
+  memorySize: 512 # overwrite default memory of 1024
+  versionFunctions: false # don't create a new function version with each deploy
   region: us-west-2 # override default region us-east-1
 
 # Service-wide environment variables
@@ -65,8 +65,8 @@ custom:
   dynamodb:
     start:
       port: 8000
-      # uncomment for already-running local dynamodb
-      noStart: true
+      # uncomment for already-running local DynamoDB
+      # noStart: true
   output:
     file: .build/stack.json # where stack output should be stored by the serverless-stack-output plugin
 

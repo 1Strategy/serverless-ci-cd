@@ -12,5 +12,3 @@ module.exports.post = (event, context, callback) => {
   const body = JSON.parse(event.body);
   todos.post(body, callback);
 };
-
-// TODO: select ORM, implement PUT, GET, and DELETE

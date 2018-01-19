@@ -34,7 +34,7 @@ class Todos {
     const params = {
       TableName: this.tableName,
       Item: {
-        id: uuidv4(), // TODO: Will dynamoDb assign ids?
+        id: uuidv4(),
         title: body.title,
         completed: body.completed,
         updatedAt: Date.now()
@@ -54,7 +54,9 @@ class Todos {
 
         const response = {
           statusCode: 200,
-          body: JSON.stringify(todo) // TODO: this is undefined; return actual object in response
+          body: JSON.stringify(todo)
+          // TODO: dynamoDB only returns empty object for a PUT;
+          // return actual object in response
         };
 
         callback(null, response);

@@ -1,3 +1,4 @@
+// use serverless-stack-output to find service endpoint
 const stackOutput = require('../../.build/stack.json');
 
 const url = stackOutput.ServiceEndpoint;
