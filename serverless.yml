@@ -11,7 +11,7 @@ provider:
 
 # Service-wide environment variables
   environment:
-    STAGE: ${opt:stage}
+    STAGE: ${opt:stage
 
 # Add statements to the Lambda function's IAM Role
   iamRoleStatements:
