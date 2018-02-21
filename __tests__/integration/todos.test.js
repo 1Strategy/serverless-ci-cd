@@ -7,7 +7,7 @@ const request = require('supertest')(url);
 describe('/todos routes', () => {
   it('POST /todos returns an empty object', () => {
     const postObj = {
-      title: 'Feed the dog',
+      title: 'Feed the cats',
       completed: false
     };
 
@@ -28,7 +28,7 @@ describe('/todos routes', () => {
       .then((res) => {
         expect(res).toBeDefined();
         expect(Array.isArray(res.body)).toBe(true);
-        expect(res.body[0]).toHaveProperty('title', 'Feed the dog');
+        expect(res.body[0]).toHaveProperty('title', 'Feed the cats');
         expect(res.body[0]).toHaveProperty('completed', false);
         expect(res.body[0]).toHaveProperty('id');
         expect(res.body[0]).toHaveProperty('updatedAt');
